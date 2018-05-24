@@ -1,0 +1,3 @@
+molecule~=2.14.0
+ansible==2.4.3
+moleculerize~=1.0.0
