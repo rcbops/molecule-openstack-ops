@@ -1,5 +1,16 @@
 ---
-- name: Converge
-  hosts: all
-  roles:
-    - role: molecule-openstack-ops
+- hosts: infra1
+  tasks:
+  - name: Clone openstack-ansible-ops repo
+    git:
+     repo: https://github.com/rsoprivatecloud/openstack-ops
+     dest: /opt/openstack-ops
+     version: master
+  - name: Deploy openstack-ops
+    # takes about 15 minutes to complete
+    shell:
+     cmd: "source /usr/local/bin/openstack-ansible.rc ; openstack-ansible main.yml"
+     chdir: /opt/openstack-ops/playbooks
+     creates: /etc/sos.conf
+    args:
+     executable: /bin/bash
