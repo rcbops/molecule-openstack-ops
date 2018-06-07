@@ -3,7 +3,7 @@ import pytest
 import testinfra.utils.ansible_runner
 
 
-"""ASC-536: Perform Service Delivery Sign Off Tasks"""
+"""ASC-537: Perform Service Delivery Sign Off Tasks"""
 
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
@@ -11,6 +11,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 
 @pytest.mark.test_id('ca13af99-5f93-11e8-8d43-6c96cfdb252f')
+@pytest.mark.jira('ASC-537')
 def test_pccommon(host):
     """Verify pccommon.sh runs without error"""
     pre = ("lxc-attach -n $(lxc-ls -1 | grep utility | head -n 1) "
