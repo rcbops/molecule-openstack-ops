@@ -1,6 +1,12 @@
 ---
 - hosts: infra1
   tasks:
+  - name: Create user_rpco_secrets.yml
+    shell:
+     cmd: "cp /opt/rpc-openstack/etc/openstack_deploy/user_rpco_secrets.yml.example /etc/openstack_deploy/user_rpco_secrets.yml ; python /opt/openstack-ansible/scripts/pw-token-gen.py --file /etc/openstack_deploy/user_rpco_secrets.yml"
+     creates: /etc/openstack_deploy/user_rpco_secrets.yml
+    args:
+     executable: /bin/bash
   - name: Clone openstack-ansible-ops repo
     git:
      repo: https://github.com/rsoprivatecloud/openstack-ops
