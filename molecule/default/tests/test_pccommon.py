@@ -10,7 +10,6 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('os-infra_hosts')[:1]
 
 
-@pytest.mark.xfail(reason='ASC-635 failed openstack-ops installation')
 @pytest.mark.test_id('ca13af99-5f93-11e8-8d43-6c96cfdb252f')
 @pytest.mark.jira('ASC-537')
 def test_pccommon(host):
