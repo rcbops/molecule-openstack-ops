@@ -21,3 +21,12 @@ def test_pccommon(host):
     result = host.run(cmd)
 
     assert result.rc == 0
+
+    # Tear down - delete all created flavors
+    utility_container = ("lxc-attach -n $(lxc-ls -1 | grep utility | head -n 1) "
+                         "-- bash -c '. /root/openrc ; ")
+
+    flavors = ['m1.tiny', 'm1.small', 'm1.medium', 'm1.large', 'm1.xlarge']
+    for flavor in flavors:
+        cmd = "{} openstack flavor delete {}'".format(utility_container, flavor)
+        host.run(cmd)
